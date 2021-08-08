@@ -23,7 +23,7 @@ let imgArray = [
 
 let all = [];
 let counter = 0;
-let NumberOfRound = 5;
+let NumberOfRound = 25;
 function Rest(name, imageSrc) {
 
   this.name = name;
@@ -113,6 +113,7 @@ function clickHandler(e) {
 
     // console.log(e.target.id.votes++)
     Rest.all[randomnumber(0, imgArray.length - 1)].votes++;
+    console.log(counter);
 
 
 
@@ -121,38 +122,7 @@ function clickHandler(e) {
 
     imageSection.removeEventListener('click', clickHandler);
 
-    // let articleElement = document.getElementById('article');
-    // let buttonElement = document.createElement('button');
-    // articleElement.appendChild(buttonElement);
-    // buttonElement.textContent= 'show result';
-    // buttonElement.onclick = craeteList;
-
-    // // eslint-disable-next-line no-inner-declarations
-    // function craeteList(){
-    //   let ulElements = document.createElement('ul');
-
-    //   articleElement.appendChild(ulElements);
-
-    //   for(let i=0; i < imgArray.length ;i++){
-    //     let liElement = document.createElement('li');
-    //     liElement.textContent= `${Rest.all[i].name} had ${Rest.all[randomnumber(0, imgArray.length - 1)].votes} votes, and was seen ${Rest.all[i].shown} times.`;
-    //     ulElements.appendChild(liElement);
-    //   }
-
-
-    // }
-
-
-
-
-  }
-
-
-}
-
-
-
-let articleElement = document.getElementById('article');
+    let articleElement = document.getElementById('article');
     let buttonElement = document.createElement('button');
     articleElement.appendChild(buttonElement);
     buttonElement.textContent= 'show result';
@@ -175,5 +145,15 @@ let articleElement = document.getElementById('article');
 
 
 
-    
+
+  }
+
+
+}
+
+
+
+
+
+
 
