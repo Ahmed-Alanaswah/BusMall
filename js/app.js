@@ -1,24 +1,24 @@
 let imgArray = [
-    'bag.jpg',
-    'banana.jpg',
-    'bathroom.jpg',
-    'boots.jpg',
-    'breakfast.jpg',
-    'bubblegum.jpg',
-    'chair.jpg',
-    'cthulhu.jpg',
-    'dog-duck.jpg',
-    'dragon.jpg',
-    'pen.jpg',
-    'pet-sweep.jpg',
-    'scissors.jpg',
-    'shark.jpg',
-    'sweep.png',
-    'tauntaun.jpg',
-    'unicorn.jpg',
-    'water-can.jpg',
-    'wine-glass.jpg',
-]
+  'bag.jpg',
+  'banana.jpg',
+  'bathroom.jpg',
+  'boots.jpg',
+  'breakfast.jpg',
+  'bubblegum.jpg',
+  'chair.jpg',
+  'cthulhu.jpg',
+  'dog-duck.jpg',
+  'dragon.jpg',
+  'pen.jpg',
+  'pet-sweep.jpg',
+  'scissors.jpg',
+  'shark.jpg',
+  'sweep.png',
+  'tauntaun.jpg',
+  'unicorn.jpg',
+  'water-can.jpg',
+  'wine-glass.jpg',
+];
 
 
 let all = [];
@@ -26,11 +26,11 @@ let counter = 0;
 let NumberOfRound = 5;
 function Rest(name, imageSrc) {
 
-    this.name = name;
-    this.imageSrc = imageSrc;
-    this.shown = 0;
-    this.votes = 0;
-    Rest.all.push(this)
+  this.name = name;
+  this.imageSrc = imageSrc;
+  this.shown = 0;
+  this.votes = 0;
+  Rest.all.push(this);
 
 
 }
@@ -42,8 +42,8 @@ Rest.all = [];
 // console.log(img1);
 
 for (let i = 0; i < imgArray.length; i++) {
-    new Rest(imgArray[i].split('.')[0], imgArray[i]);
-    // console.log(new Rest(imgArray[2].split('.')[0], imgArray[2]))
+  new Rest(imgArray[i].split('.')[0], imgArray[i]);
+  // console.log(new Rest(imgArray[2].split('.')[0], imgArray[2]))
 }
 
 // console.log(Rest.all)
@@ -54,30 +54,41 @@ let rightImage = document.getElementById('rightImage');
 let midImage = document.getElementById('midImage');
 
 function render() {
-    let leftRandom = randomnumber(0, imgArray.length - 1);
-    let rightRandom = randomnumber(0, imgArray.length - 1);
-    let midRandom = randomnumber(0, imgArray.length - 1);
+  let leftRandom = randomnumber(0, imgArray.length - 1);
+  let rightRandom = randomnumber(0, imgArray.length - 1);
+  let midRandom = randomnumber(0, imgArray.length - 1);
 
-    document.getElementById('leftImage').src = '../img/' + Rest.all[leftRandom].imageSrc;
-    document.getElementById('rightImage').src = '../img/' + Rest.all[rightRandom].imageSrc;
-    document.getElementById('midImage').src = '../img/' + Rest.all[midRandom].imageSrc;
+  document.getElementById('leftImage').src = '../img/' + Rest.all[leftRandom].imageSrc;
+  document.getElementById('rightImage').src = '../img/' + Rest.all[rightRandom].imageSrc;
+  document.getElementById('midImage').src = '../img/' + Rest.all[midRandom].imageSrc;
 
-    Rest.all[leftRandom].shown++;
-    Rest.all[rightRandom].shown++;
-    Rest.all[midRandom].shown++;
-    // console.log(Rest.all);
-    // console.log(Rest.all[leftRandom]);
-    // console.log(Rest.all[rightRandom]);
-    // console.log(Rest.all[midRandom]);
+  Rest.all[leftRandom].shown++;
+  Rest.all[rightRandom].shown++;
+  Rest.all[midRandom].shown++;
+  // console.log(Rest.all);
+  // console.log(Rest.all[leftRandom]);
+  // console.log(Rest.all[rightRandom]);
+  // console.log(Rest.all[midRandom]);
 
 }
+
+
+
 
 
 render();
 
 
+
+
+
+
+
+
+
+
 function randomnumber(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) + min)
+  return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
 
@@ -89,52 +100,80 @@ imageSection.addEventListener('click', clickHandler);
 function clickHandler(e) {
 
 
-    if ((e.target.id === 'leftImage' || e.target.id === 'rightImage' || e.target.id === 'midImage') && counter < NumberOfRound) {
+  if ((e.target.id === 'leftImage' || e.target.id === 'rightImage' || e.target.id === 'midImage') && counter < NumberOfRound) {
 
 
 
-        render();
-        counter++;
-        // Rest.all.votes++;
-        // console.log(e.target.id)
-        // console.log(e.target)
-        // console.log(e)
+    render();
+    counter++;
+    // Rest.all.votes++;
+    // console.log(e.target.id)
+    // console.log(e.target)
+    // console.log(e)
 
-        // console.log(e.target.id.votes++)
-        console.log(Rest.all[randomnumber(0, imgArray.length - 1)].votes++);
-        console.log(this.id.votes++);
-
-
-
-    } else {
-        imageSection.removeEventListener('click', clickHandler);
-
-
-        document.getElementById('button').setAttribute('class', 'inline-block');
-
-    }
+    // console.log(e.target.id.votes++)
+    Rest.all[randomnumber(0, imgArray.length - 1)].votes++;
 
 
 
+
+  } else {
+
+    imageSection.removeEventListener('click', clickHandler);
+
+    // let articleElement = document.getElementById('article');
+    // let buttonElement = document.createElement('button');
+    // articleElement.appendChild(buttonElement);
+    // buttonElement.textContent= 'show result';
+    // buttonElement.onclick = craeteList;
+
+    // // eslint-disable-next-line no-inner-declarations
+    // function craeteList(){
+    //   let ulElements = document.createElement('ul');
+
+    //   articleElement.appendChild(ulElements);
+
+    //   for(let i=0; i < imgArray.length ;i++){
+    //     let liElement = document.createElement('li');
+    //     liElement.textContent= `${Rest.all[i].name} had ${Rest.all[randomnumber(0, imgArray.length - 1)].votes} votes, and was seen ${Rest.all[i].shown} times.`;
+    //     ulElements.appendChild(liElement);
+    //   }
+
+
+    // }
+
+
+
+
+  }
 
 
 }
 
 
 
-document.getElementById('button').addEventListener('click', creatList);
+let articleElement = document.getElementById('article');
+    let buttonElement = document.createElement('button');
+    articleElement.appendChild(buttonElement);
+    buttonElement.textContent= 'show result';
+    buttonElement.onclick = craeteList;
 
-function creatList() {
+    // eslint-disable-next-line no-inner-declarations
+    function craeteList(){
+      let ulElements = document.createElement('ul');
 
-    let ulElements = document.getElementById('list');
-    for (let i; i < imgArray; i++) {
+      articleElement.appendChild(ulElements);
 
-        let liElemet = document.createElement('li');
-        liElemet.textContent = 'ahmed';
-        ulElements.appendChild(liElemet)
+      for(let i=0; i < imgArray.length ;i++){
+        let liElement = document.createElement('li');
+        liElement.textContent= `${Rest.all[i].name} had ${Rest.all[randomnumber(0, imgArray.length - 1)].votes} votes, and was seen ${Rest.all[i].shown} times.`;
+        ulElements.appendChild(liElement);
+      }
+
 
     }
 
 
 
-}
+    
+
