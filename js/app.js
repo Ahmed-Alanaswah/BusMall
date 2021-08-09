@@ -58,9 +58,9 @@ function render() {
   let rightRandom = randomnumber(0, imgArray.length - 1);
   let midRandom = randomnumber(0, imgArray.length - 1);
 
-  document.getElementById('leftImage').src = '../img/' + Rest.all[leftRandom].imageSrc;
-  document.getElementById('rightImage').src = '../img/' + Rest.all[rightRandom].imageSrc;
-  document.getElementById('midImage').src = '../img/' + Rest.all[midRandom].imageSrc;
+  document.getElementById('leftImage').src = 'img/' + Rest.all[leftRandom].imageSrc;
+  document.getElementById('rightImage').src = 'img/' + Rest.all[rightRandom].imageSrc;
+  document.getElementById('midImage').src = 'img/' + Rest.all[midRandom].imageSrc;
 
   Rest.all[leftRandom].shown++;
   Rest.all[rightRandom].shown++;
