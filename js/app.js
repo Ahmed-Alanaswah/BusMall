@@ -72,6 +72,8 @@ function render() {
 
 
 
+  
+
   // if((leftRandom === rightRandom || leftRandom === midRandom  )|| rightRandom === midRandom ){
   //   leftRandom = randomnumber(0, imgArray.length - 1);
   //   rightRandom = randomnumber(0, imgArray.length - 1);
