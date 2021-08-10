@@ -50,13 +50,11 @@ a:hover {
   margin-left: 5px;
   padding: 20px;
 }
-
 main {
   display: flex;
   justify-content: space-around;
   margin-top: 50px;
 }
-
 button {
   padding: 10px;
   border: none;
@@ -84,7 +82,6 @@ footer {
   text-align: center;
   padding: 10px;
 }
-
 button:hover {
   background-color: blue;
   padding: 15px;

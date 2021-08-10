@@ -24,29 +24,22 @@ let imgArray = [
 let all = [];
 let counter = 0;
 let NumberOfRound = 25;
-function Rest(name, imageSrc) {
+function Rest(name, imageSrc,shown = 0, votes = 0) {
 
   this.name = name;
   this.imageSrc = imageSrc;
-  this.shown = 0;
-  this.votes = 0;
+  this.shown = shown;
+  this.votes = votes;
   Rest.all.push(this);
 
 
 }
 
 Rest.all = [];
+getData();
 
-// let img1 = new Rest(imgArray[0].split('.')[0], imgArray[0]);
 
-// console.log(img1);
 
-for (let i = 0; i < imgArray.length; i++) {
-  new Rest(imgArray[i].split('.')[0], imgArray[i]);
-  // console.log(new Rest(imgArray[2].split('.')[0], imgArray[2]))
-}
-
-// console.log(Rest.all)
 
 const imageSection = document.getElementById('imageSection');
 let leftImage = document.getElementById('leftImage');
@@ -57,7 +50,9 @@ let rightRandom=0;
 let midRandom = 0;
 let randomArr = [];
 
-
+Rest.prototype.getName = function(){
+  console.log('test')
+}
 
 
 function render() {
@@ -65,32 +60,22 @@ function render() {
 
 
   do{
+
     leftRandom = randomnumber(0, imgArray.length - 1);
     rightRandom = randomnumber(0, imgArray.length - 1);
     midRandom = randomnumber(0, imgArray.length - 1);
-  }while((leftRandom === rightRandom || leftRandom === midRandom )|| rightRandom === midRandom );
 
+  }while(
+    leftRandom === rightRandom ||
+    leftRandom === midRandom || 
+    rightRandom === midRandom ||
+    randomArr.includes(leftRandom) ||
+    randomArr.includes(rightRandom) ||
+    randomArr.includes(midRandom)
 
+     );
 
-  
-
-  // if((leftRandom === rightRandom || leftRandom === midRandom  )|| rightRandom === midRandom ){
-  //   leftRandom = randomnumber(0, imgArray.length - 1);
-  //   rightRandom = randomnumber(0, imgArray.length - 1);
-  //   midRandom = randomnumber(0, imgArray.length - 1);
-
-
-  // }
-
-  // randomArr = [leftRandom,midRandom,rightRandom];
-  // console.log('====');
-  // console.log(randomArr);
-
-  // console.log('====');
-
-
-
-
+  randomArr =[leftRandom,midRandom,rightRandom];
 
   document.getElementById('leftImage').src = 'img/' + Rest.all[leftRandom].imageSrc;
   document.getElementById('rightImage').src = 'img/' + Rest.all[rightRandom].imageSrc;
@@ -99,23 +84,13 @@ function render() {
   Rest.all[leftRandom].shown++;
   Rest.all[rightRandom].shown++;
   Rest.all[midRandom].shown++;
-
+  
+  localStorage.data = JSON.stringify(Rest.all);
+  console.log(Rest.all);
 
 }
 
-
-
-
-
 render();
-
-
-
-
-
-
-
-
 
 
 function randomnumber(min, max) {
@@ -150,19 +125,7 @@ function clickHandler(e) {
 
     }
 
-
-
-   
-
-    do{
-      render();
-
-      nweArr =[leftRandom ,midRandom,rightRandom] ;
-
-    }while(!copmar(randomArr,nweArr));
-
-
-
+    render();
     counter++;
 
 
@@ -173,37 +136,13 @@ function clickHandler(e) {
     creatArticle();
 
 
+    
 
-
+  
 
   }
 
-
 }
-
-
-
-function copmar(arr1,arr2){
-
-  console.log(arr1,arr2);
-
-
-  for (let i=0;i < arr1.length;i++){
-
-    for( let j =0; j < arr2.length;j++){
-      if(arr1[i] === arr2[j]){
-        return false ;
-      }
-    }
-  }
-
-  return true;
-}
-// }
-
-
-// console.log(Rest.all.length);
-
 
 
 
@@ -284,4 +223,16 @@ function creatChart(){
   });
 }
 
-
+function getData(){
+  if(localStorage.data){
+    let data = JSON.parse(localStorage.data);
+    for (let i = 0; i < data.length; i++) {
+      new Rest(data[i].name , data[i].imageSrc,data[i].shown,data[i].votes); 
+    }
+  }else{
+    for (let i = 0; i < imgArray.length; i++) {
+      new Rest(imgArray[i].split('.')[0], imgArray[i]);
+    
+    }
+  }
+}
